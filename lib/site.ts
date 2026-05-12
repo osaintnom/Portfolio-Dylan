@@ -6,10 +6,13 @@ export const site = {
   tagline: "Photography Portfolio",
   // Short positioning line shown under the tagline.
   positioning:
-    "Commercial photography — automotive, product & studio work.",
-  // Replace with the real contact email before deploy.
-  // This value is rendered as a mailto: link only — never used to send mail server-side.
-  email: "hello@dylansbrizza.com",
+    "Commercial photography — automobiles, product & studio work.",
+  // Rendered as a mailto: link only — never used to send mail server-side.
+  email: "dylansbrizza09@gmail.com",
+  // Rendered as a tel: link only — never used server-side.
+  // Display form (formatted) and dial form (E.164-style, digits only) kept separate.
+  phoneDisplay: "(786) 778-8160",
+  phoneDial: "+17867788160",
   location: "Available for commissions",
   // Optional social links — leave empty strings to hide them in the contact section.
   socials: {

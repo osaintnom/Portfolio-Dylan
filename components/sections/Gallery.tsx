@@ -19,8 +19,28 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export function Gallery() {
   const [filter, setFilter] = useState<string>("All");
   const [activeId, setActiveId] = useState<string | null>(null);
+  // Focus-cards effect: hovered photo stays sharp, the rest blur + scale down.
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const cats = useMemo(() => categories(), []);
+
+  // Sync with the CategoryDirectory: when a panel is clicked it dispatches
+  // a `portfolio:filter` CustomEvent on the window. Listening here keeps
+  // the directory and the gallery decoupled.
+  useEffect(() => {
+    const onFilter = (e: Event) => {
+      const detail = (e as CustomEvent<{ category?: string }>).detail;
+      if (!detail) return;
+      const next = detail.category ?? "All";
+      // Only accept categories we actually know about (defensive — events
+      // can be dispatched from anywhere on `window`).
+      if (cats.includes(next)) setFilter(next);
+    };
+    window.addEventListener("portfolio:filter", onFilter as EventListener);
+    return () =>
+      window.removeEventListener("portfolio:filter", onFilter as EventListener);
+  }, [cats]);
+
   const filtered = useMemo(
     () =>
       filter === "All"
@@ -105,9 +125,9 @@ export function Gallery() {
             </h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            A focused selection of recent commercial work — automotive, motos,
-            jewelry, fashion, and studio. Click any frame to view it full
-            screen.
+            A focused selection of recent commercial work — automobiles,
+            motorcycles, jewelry, fashion, and studio. Click any frame to view
+            it full screen.
           </p>
         </motion.div>
 
@@ -142,6 +162,7 @@ export function Gallery() {
           layout
           role="list"
           aria-label="Photography portfolio"
+          onMouseLeave={() => setHoveredId(null)}
           className="grid grid-cols-1 gap-6 sm:grid-cols-6 sm:gap-8"
         >
           <AnimatePresence mode="popLayout">
@@ -151,6 +172,10 @@ export function Gallery() {
                 photo={photo}
                 index={i}
                 spanClass={spans[i]}
+                isHovered={hoveredId === photo.id}
+                isDimmed={hoveredId !== null && hoveredId !== photo.id}
+                onHover={() => setHoveredId(photo.id)}
+                onLeave={() => setHoveredId(null)}
                 onOpen={() => setActiveId(photo.id)}
                 onKeyDown={(e) => onCardKey(e, photo.id)}
               />
@@ -263,12 +288,20 @@ function GalleryItem({
   photo,
   index,
   spanClass,
+  isHovered,
+  isDimmed,
+  onHover,
+  onLeave,
   onOpen,
   onKeyDown
 }: {
   photo: Photo;
   index: number;
   spanClass: string;
+  isHovered: boolean;
+  isDimmed: boolean;
+  onHover: () => void;
+  onLeave: () => void;
   onOpen: () => void;
   onKeyDown: (e: KeyboardEvent<HTMLDivElement>) => void;
 }) {
@@ -287,8 +320,16 @@ function GalleryItem({
         tabIndex={0}
         onClick={onOpen}
         onKeyDown={onKeyDown}
+        onMouseEnter={onHover}
+        onMouseLeave={onLeave}
+        onFocus={onHover}
+        onBlur={onLeave}
         aria-label={`Open ${photo.title ?? photo.alt} in lightbox`}
-        className="group relative block w-full cursor-zoom-in overflow-hidden bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className={cn(
+          "group relative block w-full cursor-zoom-in overflow-hidden bg-card outline-none transition-[filter,transform,opacity] duration-500 ease-out will-change-transform focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          isDimmed && "blur-[3px] scale-[0.985] opacity-70",
+          isHovered && "scale-[1.005]"
+        )}
       >
         <div className={cn("relative w-full", aspectClass[photo.aspect])}>
           <Image

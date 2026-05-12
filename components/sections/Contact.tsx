@@ -13,6 +13,7 @@ export function Contact() {
   // the right trade-off.
   const [local, domain] = site.email.split("@");
   const href = `mailto:${local}%40${domain}?subject=Project%20enquiry`;
+  const telHref = `tel:${site.phoneDial}`;
 
   return (
     <section
@@ -38,9 +39,10 @@ export function Contact() {
             something quiet.
           </h2>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Open for automotive, product, jewelry, fashion, and studio
-            commissions. Send a note about your project — I reply to every
-            message personally.
+            Open to work — and open to anything worth photographing. Drawn to
+            productions, scenes, and projects of every kind, each one
+            approached as a chance to shape the moment into a timeless form.
+            Send a note about your project, and I&rsquo;ll reply personally.
           </p>
         </motion.div>
 
@@ -49,7 +51,7 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease, delay: 0.15 }}
-          className="mt-14 flex flex-col gap-10 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-14 flex flex-col gap-10 border-t border-border pt-10"
         >
           <a
             href={href}
@@ -66,11 +68,22 @@ export function Contact() {
             </span>
           </a>
 
-          <div className="flex flex-col gap-2 text-right">
-            <span className="editorial-eyebrow text-foreground/60">
-              Available
+          <a
+            href={telHref}
+            className="group inline-flex flex-col"
+            aria-label={`Call ${site.name}`}
+          >
+            <span className="editorial-eyebrow text-foreground/60">Phone</span>
+            <span className="mt-2 inline-flex items-center gap-3 font-serif text-[clamp(1.5rem,3.5vw,3rem)] text-foreground">
+              <span className="border-b border-foreground/30 pb-1 transition-colors group-hover:border-foreground">
+                {site.phoneDisplay}
+              </span>
+              <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
             </span>
-            <span className="font-sans text-sm text-foreground">
+          </a>
+
+          <div className="flex flex-col gap-2 pt-4 sm:flex-row sm:items-center sm:justify-between">
+            <span className="editorial-eyebrow text-foreground/60">
               {site.location}
             </span>
           </div>

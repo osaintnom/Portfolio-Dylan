@@ -8,3 +8,4 @@ out
 .trash-*
 photos dylan/
 build_manifest.py
+tsconfig.tsbuildinfo

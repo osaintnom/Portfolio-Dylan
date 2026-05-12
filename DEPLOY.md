@@ -83,8 +83,8 @@ Three steps (no rebuild needed locally if you're using GitHub + Vercel):
      id: "moto-13",
      src: "/photos/moto-13.jpg",
      alt: "Short description of the photo",
-     title: "Moto · 13",
-     category: "Moto",
+     title: "Motorcycles · 13",
+     category: "Motorcycles",
      aspect: "landscape" // or "portrait" or "square"
    }
    ```
