@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
 
@@ -17,6 +18,32 @@ export function Hero() {
       className="relative flex min-h-[78svh] w-full items-center justify-center overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-24"
       aria-label="Introduction"
     >
+      {/* Subtle automobile backdrop — masked to a soft circle behind the title
+          so the rest blends seamlessly into the page background. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <div
+          className="absolute left-1/2 top-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 -translate-y-1/2"
+          style={{
+            WebkitMaskImage:
+              "radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,0) 60%)",
+            maskImage:
+              "radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 28%, rgba(0,0,0,0) 60%)",
+          }}
+        >
+          <Image
+            src="/photos/autos-03.jpg"
+            alt=""
+            fill
+            priority
+            sizes="120vmin"
+            className="object-cover opacity-10"
+          />
+        </div>
+      </div>
+
       {/* Soft radial wash so the page doesn't feel flat above the directory. */}
       <div
         aria-hidden
