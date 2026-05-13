@@ -37,6 +37,19 @@ export function Contact() {
             <br />
             That&rsquo;s why I shoot them.
           </h2>
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Some moments last less than a second. That&rsquo;s enough.
+          </p>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            I&rsquo;m a photographer focused on visual storytelling through
+            movement, atmosphere and emotion — always with a cinematic and
+            detail-oriented approach inspired by energy, performance and
+            identity.
+          </p>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Open to work — and open to anything worth photographing. Send a
+            note about your project, and I&rsquo;ll reply personally.
+          </p>
         </motion.div>
 
         <motion.div
@@ -75,15 +88,13 @@ export function Contact() {
             </span>
           </a>
 
-          <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="flex flex-col gap-1">
-              <span className="font-serif text-xl text-foreground sm:text-2xl">
-                {site.name}
-              </span>
-              <span className="editorial-eyebrow text-foreground/60">
-                Photographer
-              </span>
-            </div>
+          <div className="flex flex-col gap-1 pt-4">
+            <span className="font-serif text-xl text-foreground sm:text-2xl">
+              {site.name}
+            </span>
+            <span className="editorial-eyebrow text-foreground/60">
+              Photographer
+            </span>
             <span className="editorial-eyebrow text-foreground/60">
               Based in {site.location}
             </span>
