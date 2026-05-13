@@ -34,7 +34,7 @@ export function Hero() {
           }}
         >
           <Image
-            src="/photos/autos-03.jpg"
+            src="/photos/hero.jpg"
             alt=""
             fill
             priority

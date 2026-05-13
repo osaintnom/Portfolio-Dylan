@@ -13,7 +13,7 @@ export const site = {
   // Display form (formatted) and dial form (E.164-style, digits only) kept separate.
   phoneDisplay: "(786) 778-8160",
   phoneDial: "+17867788160",
-  location: "Available for commissions",
+  location: "Miami",
   // Optional social links — leave empty strings to hide them in the contact section.
   socials: {
     instagram: "",

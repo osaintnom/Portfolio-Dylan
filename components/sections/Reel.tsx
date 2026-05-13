@@ -288,6 +288,10 @@ export function Reel() {
               <span className="editorial-eyebrow">— Reel · 2026</span>
               <span className="editorial-eyebrow">9:16</span>
             </div>
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/55">
+              <span aria-hidden className="mr-2 text-foreground/35">◉</span>
+              Sony · 70–200mm Sigma f/4
+            </p>
           </div>
         </motion.div>
       </div>

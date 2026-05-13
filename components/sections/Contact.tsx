@@ -27,23 +27,16 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease }}
-          className="max-w-4xl"
         >
           <span className="editorial-eyebrow">— Get in touch</span>
           <h2
             id="contact-heading"
-            className="editorial-heading mt-6 text-[clamp(2.75rem,8vw,7rem)] text-foreground"
+            className="editorial-heading mt-6 text-[clamp(2.5rem,7vw,6rem)] text-foreground"
           >
-            Let&rsquo;s create
+            Moments don&rsquo;t repeat.
             <br />
-            something quiet.
+            That&rsquo;s why I shoot them.
           </h2>
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Open to work — and open to anything worth photographing. Drawn to
-            productions, scenes, and projects of every kind, each one
-            approached as a chance to shape the moment into a timeless form.
-            Send a note about your project, and I&rsquo;ll reply personally.
-          </p>
         </motion.div>
 
         <motion.div
@@ -82,9 +75,17 @@ export function Contact() {
             </span>
           </a>
 
-          <div className="flex flex-col gap-2 pt-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex flex-col gap-1">
+              <span className="font-serif text-xl text-foreground sm:text-2xl">
+                {site.name}
+              </span>
+              <span className="editorial-eyebrow text-foreground/60">
+                Photographer
+              </span>
+            </div>
             <span className="editorial-eyebrow text-foreground/60">
-              {site.location}
+              Based in {site.location}
             </span>
           </div>
         </motion.div>

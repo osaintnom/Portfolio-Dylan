@@ -17,7 +17,15 @@ export type Photo = {
   category?: string;
   aspect: PhotoAspect;
   priority?: boolean;
+  /** Camera + lens used for the shot, shown in the lightbox. */
+  camera?: string;
 };
+
+/** Camera spec presets to keep the manifest tidy. */
+const CAM_AUTOS = "Sony · 70–200mm Sigma f/4";
+const CAM_MOTO = "Sony A7 III · 70–200mm f/2.8";
+const CAM_ATTIRE = "Nikon D7000 · AF-S Nikkor 18–105mm f/3.5–5.6";
+const CAM_JEWELRY = "Nikon D7000 · AF-S Micro Nikkor 60mm f/2.8";
 
 export const photos: Photo[] = [
   {
@@ -27,6 +35,7 @@ export const photos: Photo[] = [
     title: "Automobiles · 01",
     category: "Automobiles",
     aspect: "portrait",
+    camera: CAM_AUTOS,
   },
   {
     id: "autos-02",
@@ -35,6 +44,7 @@ export const photos: Photo[] = [
     title: "Automobiles · 02",
     category: "Automobiles",
     aspect: "landscape",
+    camera: CAM_AUTOS,
   },
   {
     id: "autos-03",
@@ -43,6 +53,7 @@ export const photos: Photo[] = [
     title: "Automobiles · 03",
     category: "Automobiles",
     aspect: "landscape",
+    camera: CAM_AUTOS,
   },
   {
     id: "moto-01",
@@ -52,6 +63,7 @@ export const photos: Photo[] = [
     category: "Motorcycles",
     aspect: "landscape",
     priority: true,
+    camera: CAM_MOTO,
   },
   {
     id: "moto-02",
@@ -60,6 +72,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 02",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-03",
@@ -68,6 +81,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 03",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-04",
@@ -76,6 +90,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 04",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-05",
@@ -84,6 +99,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 05",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-06",
@@ -92,6 +108,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 06",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-07",
@@ -100,6 +117,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 07",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-08",
@@ -108,6 +126,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 08",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-09",
@@ -116,6 +135,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 09",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-10",
@@ -124,6 +144,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 10",
     category: "Motorcycles",
     aspect: "portrait",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-11",
@@ -132,6 +153,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 11",
     category: "Motorcycles",
     aspect: "landscape",
+    camera: CAM_MOTO,
   },
   {
     id: "moto-12",
@@ -140,6 +162,7 @@ export const photos: Photo[] = [
     title: "Motorcycles · 12",
     category: "Motorcycles",
     aspect: "portrait",
+    camera: CAM_MOTO,
   },
   {
     id: "joyeria-01",
@@ -148,6 +171,7 @@ export const photos: Photo[] = [
     title: "Jewelry · 01",
     category: "Jewelry",
     aspect: "portrait",
+    camera: CAM_JEWELRY,
   },
   {
     id: "joyeria-02",
@@ -156,6 +180,7 @@ export const photos: Photo[] = [
     title: "Jewelry · 02",
     category: "Jewelry",
     aspect: "portrait",
+    camera: CAM_JEWELRY,
   },
   {
     id: "joyeria-03",
@@ -164,46 +189,61 @@ export const photos: Photo[] = [
     title: "Jewelry · 03",
     category: "Jewelry",
     aspect: "portrait",
+    camera: CAM_JEWELRY,
+  },
+  {
+    id: "joyeria-04",
+    src: "/photos/joyeria-04.jpg",
+    alt: "Jewelry product photography — carbon necklace",
+    title: "Jewelry · 04",
+    category: "Jewelry",
+    aspect: "portrait",
+    camera: CAM_ATTIRE,
   },
   {
     id: "ropa-01",
     src: "/photos/ropa-01.jpg",
-    alt: "Fashion / apparel photography — 1",
-    title: "Fashion · 01",
-    category: "Fashion",
+    alt: "Attire photography — 1",
+    title: "Attire · 01",
+    category: "Attire",
     aspect: "portrait",
+    camera: CAM_ATTIRE,
   },
   {
     id: "ropa-02",
     src: "/photos/ropa-02.jpg",
-    alt: "Fashion / apparel photography — 2",
-    title: "Fashion · 02",
-    category: "Fashion",
+    alt: "Attire photography — 2",
+    title: "Attire · 02",
+    category: "Attire",
     aspect: "portrait",
+    camera: CAM_ATTIRE,
   },
   {
     id: "ropa-03",
     src: "/photos/ropa-03.jpg",
-    alt: "Fashion / apparel photography — 3",
-    title: "Fashion · 03",
-    category: "Fashion",
+    alt: "Attire photography — 3",
+    title: "Attire · 03",
+    category: "Attire",
     aspect: "portrait",
+    camera: CAM_ATTIRE,
   },
   {
     id: "estudio-01",
     src: "/photos/estudio-01.jpg",
-    alt: "Studio photography — 1",
-    title: "Studio · 01",
-    category: "Studio",
+    alt: "Attire photography — 4",
+    title: "Attire · 04",
+    category: "Attire",
     aspect: "portrait",
+    camera: CAM_ATTIRE,
   },
   {
     id: "estudio-02",
     src: "/photos/estudio-02.jpg",
-    alt: "Studio photography — 2",
-    title: "Studio · 02",
-    category: "Studio",
+    alt: "Attire photography — 5",
+    title: "Attire · 05",
+    category: "Attire",
     aspect: "landscape",
+    camera: CAM_ATTIRE,
   },
 ];
 
@@ -249,15 +289,9 @@ export const categoryDirectory: CategoryMeta[] = [
     cover: "/photos/joyeria-01.jpg",
   },
   {
-    key: "Fashion",
-    label: "Fashion",
-    description: "Apparel, look-books, on-figure.",
+    key: "Attire",
+    label: "Attire",
+    description: "Apparel and studio sessions — on-figure and in-frame.",
     cover: "/photos/ropa-01.jpg",
-  },
-  {
-    key: "Studio",
-    label: "Studio",
-    description: "Commissioned studio sessions.",
-    cover: "/photos/estudio-01.jpg",
   },
 ];

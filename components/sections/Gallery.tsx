@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, KeyboardEvent } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
@@ -238,6 +245,31 @@ function buildSpans(list: Photo[]): string[] {
       continue;
     }
 
+    const d = list[i + 3];
+    const e = list[i + 4];
+
+    // Quad fit: exactly 4 portraits in a row (5th isn't a portrait or
+    // doesn't exist) → arrange as 3+3 / 3+3, a balanced 2×2 block.
+    // This makes a 4-photo category (e.g. Jewelry) feel composed instead
+    // of leaving a lone hero centered on the second row.
+    if (
+      b &&
+      c &&
+      d &&
+      a.aspect === "portrait" &&
+      b.aspect === "portrait" &&
+      c.aspect === "portrait" &&
+      d.aspect === "portrait" &&
+      (!e || e.aspect !== "portrait")
+    ) {
+      result[i] = "sm:col-span-3";
+      result[i + 1] = "sm:col-span-3";
+      result[i + 2] = "sm:col-span-3";
+      result[i + 3] = "sm:col-span-3";
+      i += 4;
+      continue;
+    }
+
     // Triple fit: 3 portraits → 2+2+2
     if (
       b &&
@@ -284,17 +316,7 @@ function spanClassFor(span: number): string {
       : "sm:col-span-2";
 }
 
-function GalleryItem({
-  photo,
-  index,
-  spanClass,
-  isHovered,
-  isDimmed,
-  onHover,
-  onLeave,
-  onOpen,
-  onKeyDown
-}: {
+type GalleryItemProps = {
   photo: Photo;
   index: number;
   spanClass: string;
@@ -304,9 +326,25 @@ function GalleryItem({
   onLeave: () => void;
   onOpen: () => void;
   onKeyDown: (e: KeyboardEvent<HTMLDivElement>) => void;
-}) {
+};
+
+const GalleryItem = forwardRef<HTMLLIElement, GalleryItemProps>(function GalleryItem(
+  {
+    photo,
+    index,
+    spanClass,
+    isHovered,
+    isDimmed,
+    onHover,
+    onLeave,
+    onOpen,
+    onKeyDown,
+  },
+  ref
+) {
   return (
     <motion.li
+      ref={ref}
       layout
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -338,7 +376,8 @@ function GalleryItem({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
             className="object-cover transition-transform duration-[1200ms] ease-out will-change-transform group-hover:scale-[1.04]"
-            loading={photo.priority ? "eager" : "lazy"}
+            priority={photo.priority}
+            loading={photo.priority ? undefined : "lazy"}
           />
           {/* Soft hover overlay */}
           <div
@@ -377,7 +416,7 @@ function GalleryItem({
       </div>
     </motion.li>
   );
-}
+});
 
 /* ────────────────────────────────────────────────────────────────────── */
 
@@ -483,6 +522,12 @@ function Lightbox({
         <p id="lightbox-desc" className="editorial-eyebrow mt-2">
           {photo.category ?? photo.alt}
         </p>
+        {photo.camera && (
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/55">
+            <span aria-hidden className="mr-2 text-foreground/35">◉</span>
+            {photo.camera}
+          </p>
+        )}
       </div>
     </motion.div>
   );
