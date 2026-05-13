@@ -33,22 +33,17 @@ export function Contact() {
             id="contact-heading"
             className="editorial-heading mt-6 text-[clamp(2.5rem,7vw,6rem)] text-foreground"
           >
-            Moments don&rsquo;t repeat.
+            Some moments last less than a second.
             <br />
-            That&rsquo;s why I shoot them.
+            That&rsquo;s enough.
           </h2>
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Some moments last less than a second. That&rsquo;s enough.
-          </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            I&rsquo;m a photographer focused on visual storytelling through
-            movement, atmosphere and emotion — always with a cinematic and
-            detail-oriented approach inspired by energy, performance and
-            identity.
+            I&rsquo;m a photographer focused on visual storytelling through 
+            movement, atmosphere and emotion, always with a cinematic and 
+            detail-oriented approach inspired by energy, performance and identity. 
           </p>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Open to work — and open to anything worth photographing. Send a
-            note about your project, and I&rsquo;ll reply personally.
+          <p className="mt-10 max-w-2xl font-serif text-2xl font-semibold leading-snug text-foreground sm:text-3xl">
+            Moments don&rsquo;t repeat. That&rsquo;s why I shoot them.
           </p>
         </motion.div>
 
